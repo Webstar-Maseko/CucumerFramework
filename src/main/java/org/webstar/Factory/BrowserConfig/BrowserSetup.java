@@ -12,10 +12,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 public class BrowserSetup {
 
     private static ThreadLocal<WebDriver> driver;
-
+    public BrowserSetup(){
+        driver = new ThreadLocal<>();
+    }
 
     public void browserSetup(String browser){
-
 
         if(browser.equalsIgnoreCase("Chrome")){
             WebDriverManager.chromedriver().setup();
@@ -36,6 +37,7 @@ public class BrowserSetup {
         }
     }
     public WebDriver getDriver(){
+        System.out.println(driver.get());
         return driver.get();
     }
 }
