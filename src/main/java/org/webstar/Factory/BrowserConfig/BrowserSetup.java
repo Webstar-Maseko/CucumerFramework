@@ -37,7 +37,7 @@ public class BrowserSetup {
         }
     }
     public WebDriver getDriver(){
-        System.out.println(driver.get());
+
         return driver.get();
     }
 }

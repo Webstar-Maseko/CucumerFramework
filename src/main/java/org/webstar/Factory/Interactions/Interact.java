@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
 
 public class Interact {
     WebDriver driver;
@@ -21,7 +23,7 @@ public class Interact {
             wait.until(ExpectedConditions.visibilityOf(element));
             wait.until(ExpectedConditions.elementToBeClickable(element));
 
-
+            element.click();
         } catch (Exception ex) {
             ex.printStackTrace();
 
@@ -46,6 +48,33 @@ public class Interact {
         } catch (Exception ex) {
             ex.printStackTrace();
             return false;
+        }
+    }
+    private String parentTab;
+    protected void switchToNewTab(){
+        try{
+            parentTab = driver.getWindowHandle();
+            Set<String> tabs = driver.getWindowHandles();
+            Iterator<String> iterator= tabs.iterator();
+            String childWindow="";
+            while(iterator.hasNext()){
+                childWindow = iterator.next();
+            }
+            driver.switchTo().window(childWindow);
+
+
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    protected void switchToParentTab(){
+        try{
+
+            driver.switchTo().window(parentTab);
+
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
     }
 

@@ -15,8 +15,11 @@ public class Base {
         setup = new BrowserSetup();
         prop = new ReadProperties().init_Prop();
         if(driver == null){
-            setup.browserSetup(prop.getProperty("browser"));
-            driver = setup.getDriver();;
+            String browser = System.getProperty("browser") == null? prop.getProperty("browser"): System.getProperty("browser");
+            setup.browserSetup(browser);
+            driver = setup.getDriver();
+            driver.manage().window().maximize();
+
             driver.get(prop.getProperty("url"));
         }
 

@@ -7,6 +7,7 @@ public class TestContextSetup {
 
     public WebDriver driver;
     public PageObjectManager pageObjectManager;
+    public String productName;
     Base base;
 
     public TestContextSetup(){

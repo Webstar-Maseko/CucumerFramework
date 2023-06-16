@@ -3,6 +3,7 @@ package org.webstar.Steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 import org.webstar.BaseTest.TestContextSetup;
 import org.webstar.Pages.LandingPage;
@@ -16,18 +17,22 @@ public class LandingPageStepDef {
         this.testContextSetup = testContextSetup;
         landingPage = testContextSetup.pageObjectManager.getLandingPage();
     }
-    @Given("user is on landing page")
-    public void user_is_on_landing_page() {
-        System.out.println("here");
-    }
-
-    @Then("verify that logo brand is displayed")
-    public void verifyThatLogoBrandIsDisplayed() {
+    @Given("user is on the landing page")
+    public void user_is_on_the_landing_page() {
         Assert.assertTrue(landingPage.verifyLandingPage());
     }
+    @When("^user searches with shortname (.+) and extracts actual name of product$")
+    public void user_searches_with_shortname_and_extracts_actual_name_of_product(String string) throws InterruptedException {
+        landingPage.searchVegitables(string);
+        testContextSetup.productName = landingPage.getFirstVegitableText();
 
-    @And("user should be able to fill the search box")
-    public void userShouldBeAbleToFillTheSearchBox() {
-        landingPage.searchVegitables("Tomato");
+        Thread.sleep(1000);
+    }
+
+
+    @When("user navigates to offer page")
+    public void userNavigatesToOfferPage() {
+
+        landingPage.clickTopDeals();
     }
 }
