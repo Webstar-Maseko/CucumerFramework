@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 import org.testng.annotations.DataProvider;
 
 @CucumberOptions(features = "src/test/java/org/webstar/Features", glue = "org.webstar.Steps", plugin = {"pretty","html:Report/cucumber.html","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
-public class testngRunner extends AbstractTestNGCucumberTests {
+public class TestngRunnerTest extends AbstractTestNGCucumberTests {
 
     //Overriding the data provider will allow you to run your tests parallel
     @Override

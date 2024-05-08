@@ -22,6 +22,7 @@ public class BrowserSetup {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
 
+
             driver.set(new ChromeDriver(options));
         } else if (browser.equalsIgnoreCase("Microsoft Edge")) {
             WebDriverManager.edgedriver().setup();
